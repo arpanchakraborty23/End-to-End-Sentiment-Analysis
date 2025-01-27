@@ -1,0 +1,22 @@
+pandas
+transformers
+transformers[sentencepiece]
+accelerate
+datasets
+sacrebleu
+rouge_score
+nltk
+tqdm
+PyYAML
+matplotlib
+torch
+boto3
+notebook
+ipykernel
+mypy-boto3-s3
+python-box
+ensure
+flask
+mlflow
+evaluate
+-e .
