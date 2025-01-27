@@ -22,3 +22,11 @@ class DataTransformationArtifact:
     transformed_test_path: str
     transformed_valid_path: str
     preprocess_obj: object
+
+@dataclass
+class ModelTrainerArtifact:
+    train_metrics_file: str
+    test_metrics_file: str
+    model: object
+
+    

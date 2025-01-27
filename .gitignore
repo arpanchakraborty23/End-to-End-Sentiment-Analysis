@@ -3,7 +3,7 @@ __pycache__/
 *.py[cod]
 *$py.class
 
-expariment\imdb_reviews.db
+Artifacts/*
 
 
 # C extensions

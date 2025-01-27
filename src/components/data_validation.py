@@ -31,7 +31,7 @@ class DataValidation:
             if 'Unnamed: 0' in df.columns:
                 print('Unnamed: 0 present in dataframe')
                 logging.info(f'Unnamed: 0 present in dataframe {df.columns}')
-                df.drop(columns='Unnamed: 0',axis=1,inplace=True)
+                df.drop(columns=['Unnamed: 0','Unnamed: 0.1'],axis=1,inplace=True)
             else:
                 df
 
@@ -48,16 +48,17 @@ class DataValidation:
 
     def validate_numaric_cols(self, df: pd.DataFrame) -> bool:
         try:
-            numerical_columns=len(self.schema_config['numarical_column'])
             
             # checking 'Unnamed: 0' col prasent or not
             if 'Unnamed: 0' in df.columns:
                 print('Unnamed: 0 present in dataframe')
                 logging.info(f'Unnamed: 0 present in dataframe {df.columns}')
-                df.drop(columns='Unnamed: 0',axis=1,inplace=True)
+                df.drop(columns=['Unnamed: 0','Unnamed: 0.1'],axis=1,inplace=True)
             else:
                 df
             print(df.info())
+
+            numerical_columns=len(self.schema_config['numarical_column'])
             numerical_columns_in_df=len(df.select_dtypes(include=int).columns)
             logging.info(f"Required number of numarical columns:{numerical_columns}")
             logging.info(f"Data frame has numarical columns:{numerical_columns_in_df}")
@@ -67,7 +68,7 @@ class DataValidation:
         except Exception as e:
             print(e)
 
-    def detect_data_drift(self, base_df: pd.DataFrame, current_df: pd.DataFrame, threshold: float = 0.05) -> bool:
+    def detect_data_drift(self, base_df: pd.DataFrame, current_df: pd.DataFrame, threshold: float = 0.1) -> bool:
         try:
             status = True
             report = {}
@@ -109,11 +110,11 @@ class DataValidation:
             logging.info('Data read from training and test and vallid files completed.')
 
             # Validate number of columns
-            if not self.validate_num_of_cols(df=train_df):
+            if not self.validate_num_of_col(df=train_df):
                 raise("Training data does not contain the expected columns.")
-            if not self.validate_num_of_cols(df=test_df):
+            if not self.validate_num_of_col(df=test_df):
                 raise("Testing data does not contain the expected columns.")
-            if not self.validate_num_of_cols(df=val_df):
+            if not self.validate_num_of_col(df=val_df):
                 raise("Validation data does not contain the expected columns.")
 
             # validate number of nmarical cols

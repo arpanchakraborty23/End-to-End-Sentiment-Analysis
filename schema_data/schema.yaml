@@ -1,6 +1,5 @@
 columns:
   review_text: str
-  clean_text: str
   sentiment : int
 
 numarical_column:
