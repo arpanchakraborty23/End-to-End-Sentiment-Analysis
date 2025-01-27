@@ -2,8 +2,9 @@ from src.logging.logger import logging
 from src.entity.config_entity import TraningPiplineConfig, DataIngestionConfig, DataValidationConfig
 from src.components.data_ingestion import DataIngestion
 from src.components.data_validation import DataValidation
+from src.components.data_transformation import DataTransformation
 from src.constant import traning_pipline
-from src.entity.artifacts_entity import DataIngestionArtifacts,DataValidationArtifact
+from src.entity.artifacts_entity import DataIngestionArtifacts,DataValidationArtifact,DataTransformationArtifact
 
 class TraningPipline:
     def __init__(self) -> None:
@@ -35,6 +36,17 @@ class TraningPipline:
         except Exception as e:
             logging.info(f'Error in data validation {str(e)}')
             print(e)
+    def start_data_transformation(self,data_validation_artifact:DataValidationArtifact):
+        try:
+            logging.info(f'<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Data Transformation Started >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>')
+            data_transformation=DataTransformation()
+            data_transformation.initiate_data_transformation(data_validation_artifact=data_validation_artifact)
+            data_transformation_artifact=data_transformation.initiate_data_transformation()
+            logging.info(f'<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Data Transformation completed >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>')
+
+        except Exception as e:
+            logging.info(f'Error in data transformation {str(e)}')
+            print(e)
 
 
     def run(self):
@@ -42,7 +54,7 @@ class TraningPipline:
             logging.info('************************************ Traning Pipline Started ************************************')
             data_ingestion_artifact=self.start_data_ingestion()
             data_validation_artifact=self.start_data_validation(data_ingestion_artifacts=data_ingestion_artifact)
-            
+            data_transformation_artifact=self.start_data_transformation(data_validation_artifact=data_validation_artifact)
 
 
             logging.info('************************************ Traning Pipline Completed ************************************')

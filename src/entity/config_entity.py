@@ -51,3 +51,22 @@ class DataValidationConfig:
       self.schema_file_path = os.path.join(
          traning_pipline.SCHEMA_File_DIR,traning_pipline.SCHEMA_File_NAME # schema file dir
       )
+
+class DataTransformationConfig:
+    def __init__(self, traning_pipline_config: TraningPiplineConfig) -> None:
+        self.data_transformation_dir = os.path.join(
+            traning_pipline_config.artifacts_path, traning_pipline.DATA_TRANSFORMATION_DIR_NAME # artifacts folder, data transformation folder
+         )
+        self.transformed_data_dir = os.path.join(
+               self.data_transformation_dir, traning_pipline.DATA_TRANSFORMATION_TRANSFORMED_DATA_DIR # data transformation folder, transformed folder
+         )
+        self.transformed_train_file_path = os.path.join(
+               self.transformed_data_dir, traning_pipline.DATA_TRANSFORMATION_TRANSFORMED_TRAIN_FILE_NAME # transformed folder, train file name
+         )
+        self.transformed_test_file_path = os.path.join(  
+               self.transformed_data_dir, traning_pipline.DATA_TRANSFORMATION_TRANSFORMED_TEST_FILE_NAME # transformed folder, test file name
+         )
+        self.data_transformation_valid_file_path = os.path.join(
+               self.transformed_data_dir, traning_pipline.DATA_TRANSFORMATION_TRANSFORMED_VALID_FILE_NAME # transformed folder, valid file name
+         )
+        self.preprocessing_object = traning_pipline.PREPROCESSING_Object # preprocess_text

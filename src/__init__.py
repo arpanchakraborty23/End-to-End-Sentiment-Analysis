@@ -4,9 +4,12 @@ import yaml,json
 import pandas as pd
 import numpy as np
 import pickle
+import nltk
+import re
+from nltk.corpus import stopwords
+from nltk.stem import WordNetLemmatizer
 import matplotlib.pyplot as plt
 from sklearn.metrics import roc_curve, auc
-from sklearn.model_selection import GridSearchCV,RandomizedSearchCV
 from pathlib import Path
 from ensure import ensure_annotations
 from box import ConfigBox
@@ -33,6 +36,19 @@ def write_yaml_file(file_path: str, content: object, replace: bool = False):
             yaml.dump(content, file)
     except Exception as e:
         print(e)
+
+
+def preprocess_text(text):
+    nltk.stopwords.download('stopwords')
+    stop_words = set(stopwords.words('english'))
+    text = text.lower()  # Convert to lowercase
+    text = re.sub(r'<[^>]*>', '', text)  # Remove HTML tags
+    text = re.sub(r'[^\w\s]', '', text)  # Remove punctuation
+    text = re.sub(r'\d+', '', text)  # Remove numbers
+    text = ' '.join(word for word in text.split() if word not in stop_words)  # Remove stopwords
+    return text.strip()
+
+
  
     
 def model_evaluatuion(x_train,y_train,x_test,y_test,models,prams):
@@ -90,6 +106,6 @@ def save_as_json(obj, file_path):
     except Exception as e:
         logging(f"Error saving JSON to {file_path}: {e}")
         print(f"Error saving JSON to {file_path}: {e}")
-        raise CustomException(e,sys)
+        
 
 
