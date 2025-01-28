@@ -54,13 +54,14 @@ End-to-End-Sentiment-Analysis/
 
 ### **1. Data Pipeline**
 - **Data Source**: Import imdb data from Hugging Face datasets. This is a dataset for binary sentiment classification containing substantially more data than previous benchmark datasets. It provide a set of 25,000 highly polar movie reviews.
+
 [Dataset link](https://huggingface.co/datasets/stanfordnlp/imdb) .
 
 - **Steps**:
   1. **Config**: Collect configuration of Data Ingestion, Data Validation, Data Transformation ,Model Trainer
   2. **Artifacts Config** : Storing Output data path of  Data Ingestion, Data Validation, Data Transformation ,Model Trainer
   3. **Data Ingestion**: Collect and split the data into training, validation, and testing sets.
-  4. **Data Validation**: Verify data schema and check for missing or corrupt values and Data distribution.
+  4. **Data Validation**: Verify data schema and check for missing columns and Data distribution.
   5. **Data Transformation**: Preprocess text data, including tokenization, stemming, and stop-word removal.
 
 ### **2. Model Training**
@@ -69,19 +70,14 @@ End-to-End-Sentiment-Analysis/
 
 ### **3. Deployment**
 - Dockerize the application for containerized deployment.
-AWS EC2: Used for scalable compute resources for training, preprocessing, and serving the model.
+- AWS EC2 Used for scalable compute resources for training, preprocessing, and serving the model.
  
-AWS S3: Centralized storage for datasets, model artifacts, logs, and metadata.
+- AWS S3 Centralized storage for preprocesser, model artifacts.
 
-MLOps Frameworks: MLflow for pipeline orchestration, tracking, and model management.
+- Results Achieved 98% accuracy in prediction
 
-Results Achieved 95% accuracy in anomaly detection with low false-positive rates.
+- Reduced deployment times by 40% with automated CI/CD pipelines.
 
-Reduced deployment times by 40% with automated CI/CD pipelines.
-
-Ensured scalable threat detection with EC2 instances processing 10,000+ events per second.
-
-This project demonstrates the seamless integration of MLOps practices with cloud-based tools, providing a robust solution for network security challenges
 - Integrate CI/CD workflows using GitHub Actions for continuous deployment to AWS.
 
 ## AWS-Github-Actions-Deployment
@@ -132,7 +128,9 @@ sudo usermod -aG docker ubuntu
 newgrp docker
 
 6. Configure EC2 as self-hosted runner:
-setting>actions>runner>new self hosted runner> choose os> then run command one by one
+
+setting > actions > runner > new self hosted runner> choose os> run command one by one 
+
 7. Setup github secrets:
 AWS_ACCESS_KEY_ID=
 
