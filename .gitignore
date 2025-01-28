@@ -4,7 +4,7 @@ __pycache__/
 *$py.class
 
 Artifacts/*
-
+sentimentanalysis.pem
 
 # C extensions
 *.so
