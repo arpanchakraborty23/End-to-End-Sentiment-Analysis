@@ -27,7 +27,8 @@ TARGET_COLUMN:str='sentiment'
 MODEL_DIR:str='model'
 MODEL_FILE:str='model.pkl'
 
-
+"""S3 Bucket """
+TRANING_S3_BUCKER='Sentiment-Analysis'
 
 " Define Data Ingestion Constants"
 DATA_INGESTION_DIR_NAME: str = 'data_ingestion'

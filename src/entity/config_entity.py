@@ -76,7 +76,7 @@ class DataTransformationConfig:
                self.data_transformation_dir,traning_pipline.DATA_TRANSFORMATION_TRANSFORMED_DATA_DIR, traning_pipline.DATA_TRANSFORMATION_TRANSFORMED_VALID_FILE_NAME # transformed folder, valid file name
          )
         self.preprocessing_object = os.path.join(
-            self.data_transformation_dir,traning_pipline.PREPROCESSING_OBJECT_DIR,traning_pipline.PREPROCESSING_OBJECT_NAME # preprocesser folder, preprocesser object
+            traning_pipline.PREPROCESSING_OBJECT_DIR,traning_pipline.PREPROCESSING_OBJECT_NAME # preprocesser folder, preprocesser object
         )
 
 class ModelTrainerConfig:
@@ -85,7 +85,7 @@ class ModelTrainerConfig:
                traning_pipline_config.artifacts_path, traning_pipline.MODEL_TRINER_DIR_NAME # artifacts folder, model trainer folder
          )
          self.model_obj_path= os.path.join(
-               self.model_trainer_dir, traning_pipline.MODEL_DIR ,traning_pipline.MODEL_FILE # model trainer folder, model folder
+               traning_pipline.MODEL_DIR ,traning_pipline.MODEL_FILE # model trainer folder, model folder
          )
          self.model_metrics_dir = os.path.join(
                self.model_trainer_dir, traning_pipline.MODEL_TRINER_MODEL_METRICS_DIR # model trainer folder, model metrics folder

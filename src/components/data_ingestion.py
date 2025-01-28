@@ -1,8 +1,8 @@
 from src.logging.logger import logging
-from src.entity.config_entity import TraningPiplineConfig, DataIngestionConfig
-from src.constant import traning_pipline
+from src.entity.config_entity import  DataIngestionConfig
+from src.constant.traning_pipline import DATA_FILE_PATH
 from src.entity.artifacts_entity import DataIngestionArtifacts
-
+import sqlite3
 import os
 import sys
 import pandas as pd
@@ -13,9 +13,22 @@ class DataIngestion:
         self.config= data_ingestion_config
         logging.info(f"Data Ingestion Config: {self.config}")
 
-    def read_data(self, data_path: str)-> pd.DataFrame:
-        return pd.read_csv(data_path)
-    
+    def fetch_data_as_dataframe(db_path: str, query: str) -> pd.DataFrame:
+      try:
+         # Connect to the SQLite database
+         connection = sqlite3.connect(db_path)
+         
+         # Execute the query and read data into a DataFrame
+         df = pd.read_sql_query(query, connection)
+         
+         # Close the connection
+         connection.close()
+         
+         return df
+      
+      except Exception as e:
+         print(e)
+
     def export_data_to_feature_store(self,df:pd.DataFrame) -> pd.DataFrame:
       try:
          logging.info('Storing raw data to feature store path')
@@ -32,7 +45,10 @@ class DataIngestion:
       except Exception as e:
         logging.info(f'Error in export data {str(e)}')
         print(e)
-    
+
+    @staticmethod
+    def read_data(file_path: str) -> pd.DataFrame:
+        return pd.read_csv(file_path)
     def split_data_into_train_test(self,df):
       try:
          logging.info('spliting data to train set and test set and validation set')
@@ -66,9 +82,9 @@ class DataIngestion:
     def initiate_data_ingestion(self):
       try:
          
-         df=self.read_data(data_path=traning_pipline.DATA_FILE_PATH)
          # read data from sqllite3
-         # df=self.read_data_from_sqllite3(data_path=self.config.data_path)
+         # df=self.fetch_data_as_dataframe(DATA_FILE_PATH)
+         df=self.read_data(DATA_FILE_PATH)
 
          self.export_data_to_feature_store(df=df)
 
