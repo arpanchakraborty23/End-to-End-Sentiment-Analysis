@@ -144,7 +144,7 @@ AWS_ECR_LOGIN_URI =
 ## **Key Features**
 - **Modular Architecture**: Each stage of the pipeline is modular and reusable.
 - **Comprehensive Preprocessing**: Handles text cleaning, tokenization, and vectorization.
-- **Scalable Deployment**: Uses Docker and FastAPI for easy deployment.
+- **Scalable Deployment**: Uses Docker and Flask for easy deployment.
 - **CI/CD Integration**: Automated testing and deployment with GitHub Actions.
 
 
