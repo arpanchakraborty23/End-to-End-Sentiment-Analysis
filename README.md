@@ -102,13 +102,12 @@ End-to-End-Sentiment-Analysis/
 
 5. Lauch your docker image in EC2
 
-#Policy:
+# Steps:
 
-1. AmazonEC2ContainerRegistryFullAccess
-
-2. AmazonEC2FullAccess
+1. IAM user
+2. Add policyAmazonEC2FullAccess
 3. Create ECR repo to store/save docker image
-- Save the URI: 
+  - Save the URI: 509324781298.dkr.ecr.us-east-1.amazonaws.com/sentimenanalysis
 4. Create EC2 machine (Ubuntu)
 5. Open EC2 and Install docker in EC2 Machine:
 #optinal
@@ -138,7 +137,8 @@ AWS_SECRET_ACCESS_KEY=
 
 AWS_REGION = us-east-1
 
-AWS_ECR_LOGIN_URI = 
+AWS_ECR_LOGIN_URI = 509324781298.dkr.ecr.us-east-1.amazonaws.com
+ECR_REPOSITORY_NAME = sentimenanalysis
 
 ---
 ## **Key Features**

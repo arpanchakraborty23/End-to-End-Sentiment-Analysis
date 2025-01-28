@@ -4,7 +4,7 @@ import os
 
 
 ARTIFACTS_PATH = 'Artifacts'
-DATA_FILE_PATH = r'D:\assamement-project\End-to-End-Sentiment-Analysis\data\dataset.csv'
+DATA_FILE_PATH = r'data\dataset.csv'
 DATA_NAME:str= 'raw.csv'
 
 TRANING_FILE_NAME = 'Train.csv'
@@ -28,7 +28,10 @@ MODEL_DIR:str='model'
 MODEL_FILE:str='model.pkl'
 
 """S3 Bucket """
-TRANING_S3_BUCKER='Sentiment-Analysis'
+TRAINING_S3_BUCKET='ffhfjf' 
+
+""" Final Model"""
+FINAL_MODEL_PATH:object='final_model'
 
 " Define Data Ingestion Constants"
 DATA_INGESTION_DIR_NAME: str = 'data_ingestion'

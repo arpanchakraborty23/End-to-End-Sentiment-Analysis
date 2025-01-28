@@ -29,7 +29,7 @@ class ModelTrainer:
                       'MultinomialNB': MultinomialNB(),
                       'GaussianNB': GaussianNB(),
                       'RandomForestClassifier': RandomForestClassifier(),
-                      'BaggingClassifier': BaggingClassifier()
+                    #   'BaggingClassifier': BaggingClassifier()
                       }
             
             report:dict=model_evaluatuion(x_train,y_train,x_valid,y_valid,models)

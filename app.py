@@ -1,17 +1,19 @@
 from flask import Flask, request, jsonify, render_template
 from src.utils.utils import load_obj, preprocess_text
+from src.pipline.train_pipline import TraningPipline
 import re
+import os
 
 # Initialize Flask app
 app = Flask(__name__)
 
 # Load the pre-trained model and preprocesser at app startup
 model = load_obj(
-    file_path=r'model\model.pkl'
+    file_path=r'final_model\model.pkl'
 )
 
 preprocesser = load_obj(
-    file_path=r'preprocesser\preprocess_text.pkl'
+    file_path=r'final_model\preprocess_text.pkl'
 )
 
 def preprocess_text(text):
@@ -30,6 +32,12 @@ def predict_sentiment(text):
 @app.route('/')
 def index():
     return render_template('index.html')
+
+@app.route('/train')
+def train():
+    train_pipline=TraningPipline()
+    train_pipline.run()
+    return jsonify('Model Train successfully!')
 
 @app.route('/predict', methods=['POST'])
 def predict_sentiment_api():
